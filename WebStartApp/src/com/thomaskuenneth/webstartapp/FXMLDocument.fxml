@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
@@ -11,6 +13,11 @@
          <children>
               <Button fx:id="button" onAction="#handleButtonAction" text="Click Me!" />
               <Label fx:id="label" alignment="CENTER" contentDisplay="TOP" minHeight="16" minWidth="69" text="placeholder" />
+            <Hyperlink fx:id="link" onAction="#handleHyperlinkAction" text="https://openjdk.java.net/">
+               <VBox.margin>
+                  <Insets top="32.0" />
+               </VBox.margin>
+            </Hyperlink>
          </children>
       </VBox>
    </children>
