@@ -48,6 +48,10 @@ public class DemoApplet extends Applet {
         if (timer != null) {
             timer.start();
         }
+        String s = String.format("Java %s (%s)",
+                System.getProperty("java.version"),
+                System.getProperty("java.vendor"));
+        getAppletContext().showStatus(s);
     }
 
     @Override
