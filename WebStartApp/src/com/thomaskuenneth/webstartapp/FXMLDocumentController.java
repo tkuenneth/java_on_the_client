@@ -3,8 +3,6 @@ package com.thomaskuenneth.webstartapp;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,8 +37,10 @@ public class FXMLDocumentController implements Initializable {
         try {
             BasicService bs = (BasicService) ServiceManager.lookup("javax.jnlp.BasicService");
             bs.showDocument(new URL(link.getText()));
-        } catch (MalformedURLException | UnavailableServiceException ex) {
-            // should be logging this exception
+        } catch (Exception ex) {
+            // we do not catch MalformedURLException and
+            // UnavailableServiceException to avoid ClassNotFoundException
+            // if UnavailableServiceException is not on classpath
         }
     }
 
