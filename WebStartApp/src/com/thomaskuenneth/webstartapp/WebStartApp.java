@@ -37,6 +37,11 @@ public final class WebStartApp extends JFrame {
         JLabel label = new JLabel("Hello World");
         label.setAlignmentX(CENTER_ALIGNMENT);
         box.add(label);
+        JLabel versionLabel = new JLabel(String.format("Java %s (%s)",
+                System.getProperty("java.version"),
+                System.getProperty("java.vendor")));
+        versionLabel.setAlignmentX(CENTER_ALIGNMENT);
+        box.add(versionLabel);
         box.add(Box.createRigidArea(new Dimension(0, 10)));
         JButton button = new JButton("https://openjdk.java.net/");
         button.setAlignmentX(CENTER_ALIGNMENT);
