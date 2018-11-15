@@ -9,8 +9,9 @@
    <children>
       <VBox alignment="CENTER" fillWidth="false">
          <children>
+              <Label fx:id="version" alignment="CENTER" contentDisplay="TOP" minHeight="16" minWidth="69" text="placeholder" />
               <Button fx:id="button" onAction="#handleButtonAction" text="Click Me!" />
-              <Label fx:id="label" alignment="CENTER" contentDisplay="TOP" minHeight="16" minWidth="69" text="placeholder" />
+              <Label fx:id="label" alignment="CENTER" minHeight="16" minWidth="69" text="placeholder" />
          </children>
       </VBox>
    </children>

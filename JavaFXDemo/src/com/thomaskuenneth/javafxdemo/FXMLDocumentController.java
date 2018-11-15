@@ -17,6 +17,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label label;
 
+    @FXML
+    private Label version;
+
     private int count;
 
     @FXML
@@ -28,6 +31,8 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         count = 0;
+        version.setText(String.format("Java %s (%s)", System.getProperty("java.version"),
+                System.getProperty("java.vendor")));
         update();
     }
 
