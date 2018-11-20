@@ -1,0 +1,24 @@
+# run app from the command line
+cd .../java_on_the_client/WebStartApp/dist/
+java -jar WebStartApp.jar
+
+
+# run app from the command line
+java --module-path=.../javafx-sdk-11.0.1/lib/ --add-modules=javafx.controls,javafx.fxml -jar .../java_on_the_client/JavaFXDemo/dist/JavaFXDemo.jar
+
+
+# create a modular runtime image
+mkdir /Users/thomas/Desktop/demo
+cp .../java_on_the_client/JavaFXDemo/dist/JavaFXDemo.jar /Users/thomas/Desktop/demo
+cd /Users/thomas/Desktop/demo
+/Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/bin/jdeps --module-path=.../javafx-sdk-11.0.1/lib/  --generate-module-info . JavaFXDemo.jar 
+# add to module-info.java
+opens com.thomaskuenneth.javafxdemo to javafx.fxml;
+javac --module-path=.../javafx-sdk-11.0.1/lib/ --patch-module JavaFXDemo=JavaFXDemo.jar JavaFXDemo/module-info.java
+cd JavaFXDemo ; jar uf ../JavaFXDemo.jar module-info.class ; cd ..
+/Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/bin/jmod create --class-path JavaFXDemo.jar --main-class com.thomaskuenneth.javafxdemo.JavaFXDemo JavaFXDemo.jmod
+/Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/bin/jlink --module-path .../javafx-jmods-11.0.1/:JavaFXDemo.jmod --add-modules=javafx.controls,javafx.fxml,JavaFXDemo --output links --launcher runme=JavaFXDemo
+
+
+# run the modular runtime image
+./links/bin/runme
