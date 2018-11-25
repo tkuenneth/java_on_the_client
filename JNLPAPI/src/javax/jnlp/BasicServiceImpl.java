@@ -23,7 +23,7 @@ public class BasicServiceImpl implements BasicService {
                 Desktop.getDesktop().browse(url.toURI());
                 return true;
             } catch (IOException | URISyntaxException ex) {
-                LOGGER.log(Level.SEVERE, null, ex);
+                LOGGER.log(Level.SEVERE, "showDocument()", ex);
             }
         }
         return false;
@@ -41,6 +41,10 @@ public class BasicServiceImpl implements BasicService {
 
     @Override
     public boolean isWebBrowserSupported() {
-        return Desktop.isDesktopSupported();
+        if (Desktop.isDesktopSupported()) {
+            Desktop d = Desktop.getDesktop();
+            return d.isSupported(Desktop.Action.BROWSE);
+        }
+        return false;
     }
 }
