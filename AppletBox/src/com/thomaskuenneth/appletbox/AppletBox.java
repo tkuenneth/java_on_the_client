@@ -6,12 +6,15 @@ import java.applet.AppletStub;
 import java.applet.AudioClip;
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -81,15 +84,26 @@ public final class AppletBox extends JFrame implements AppletContext, AppletStub
 
     @Override
     public Image getImage(URL u) {
-        return null;
+        return Toolkit.getDefaultToolkit().createImage(u);
     }
 
     @Override
     public void showDocument(URL u) {
+        showDocument(u, "");
     }
 
     @Override
     public void showDocument(URL u, String frame) {
+        if (Desktop.isDesktopSupported()) {
+            Desktop d = Desktop.getDesktop();
+            if (d.isSupported(Desktop.Action.BROWSE)) {
+                try {
+                    d.browse(u.toURI());
+                } catch (URISyntaxException | IOException ex) {
+                    showStatus(ex.getLocalizedMessage());
+                }
+            }
+        }
     }
 
     @Override
