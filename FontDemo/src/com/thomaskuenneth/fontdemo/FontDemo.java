@@ -28,6 +28,7 @@ public final class FontDemo extends JFrame {
         addLabel(cp);
         int index = addFontList(cp);
         fontList.setSelectedIndex(index);
+        addLucidaLabel(cp);
         setContentPane(cp);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
@@ -67,6 +68,14 @@ public final class FontDemo extends JFrame {
             }
         }
         return (int) (Math.random() * names.length);
+    }
+
+    private void addLucidaLabel(JPanel p) {
+        JLabel l = new JLabel();
+        Font f = Font.decode("Lucida Bright");
+        l.setFont(f.deriveFont(22f));
+        l.setText(f.getFamily());
+        p.add(l, BorderLayout.SOUTH);
     }
 
     public static void main(String[] args) {
