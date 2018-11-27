@@ -22,3 +22,9 @@ cd JavaFXDemo ; jar uf ../JavaFXDemo.jar module-info.class ; cd ..
 
 # run the modular runtime image
 ./links/bin/runme
+
+
+jar --file /Users/thomas/Downloads/rhino-js-engine-1.7.7.1.jar --describe-module
+
+
+java --module-path ScriptingDemo.jar:/Users/thomas/Downloads/rhino-js-engine-1.7.7.1.jar:/Users/thomas/Downloads/rhino1.7.9/lib/rhino-1.7.9.jar --add-modules rhino,rhino.js.engine --add-opens rhino.js.engine/com.sun.phobos.script.javascript=ALL-UNNAMED com.thomaskuenneth.scriptingdemo.ScriptingDemo
